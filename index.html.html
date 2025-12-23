@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>InfoSphere Ibn Khaldoun | 2025</title>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Noto+Sans:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary-brown: #4B3621;
+    --secondary-beige: #D9C9B3;
+    --accent-rust: #B55A30;
+    --bg-cream: #F5F1EC;
+    --bg-warm-beige: #EDE3D0;
+    --text-dark: #3B2E2C;
+    --white: #FFFFFF;
+    --transition: all 0.3s ease;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Noto Sans', sans-serif;
+    background: linear-gradient(135deg, var(--bg-cream), var(--bg-warm-beige));
+    color: var(--text-dark);
+    line-height: 1.6;
+    transition: var(--transition);
+}
+
+[dir="rtl"] { font-family: 'Arial', sans-serif; }
+
+header {
+    background-color: var(--primary-brown);
+    color: var(--white);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.logo {
+    font-family: 'Merriweather', serif;
+    font-size: 1.5rem;
+    color: var(--secondary-beige);
+}
+
+.nav-links a {
+    color: var(--white);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.lang-switcher select {
+    background: var(--accent-rust);
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.hero {
+    height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: linear-gradient(rgba(75,54,33,0.7), rgba(75,54,33,0.7)),
+                url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&q=80&w=1200');
+    background-size: cover;
+    color: var(--white);
+    padding: 20px;
+}
+
+.hero h1 { font-family: 'Merriweather', serif; font-size: 3rem; margin-bottom: 1rem; }
+
+.container { max-width: 1200px; margin: 50px auto; padding: 0 20px; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: var(--secondary-beige);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: var(--transition);
+    border-bottom: 5px solid transparent;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    border-bottom: 5px solid var(--accent-rust);
+}
+
+.btn {
+    display: inline-block;
+    background: var(--accent-rust);
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 20px;
+    transition: var(--transition);
+}
+
+.btn:hover { background: var(--primary-brown); }
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 15px;
+    background: #000;
+    margin: 10px 0;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0; top: 0;
+    width: 100%; height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: var(--bg-cream);
+    margin: 50px auto;
+    padding: 20px;
+    border-radius: 15px;
+    max-width: 900px;
+}
+
+.close {
+    color: var(--primary-brown);
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+footer {
+    background: var(--primary-brown);
+    color: var(--white);
+    text-align: center;
+    padding: 40px 20px;
+    margin-top: 50px;
+}
+
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2rem; }
+    header { flex-direction: column; gap: 15px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+    <div class="logo">InfoSphere</div>
+    <nav class="nav-links">
+        <a onclick="openLibrary()" data-key="library">Library</a>
+        <a onclick="openNews()" data-key="news">AI News</a>
+    </nav>
+    <div class="lang-switcher">
+        <select onchange="changeLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="ar"></option>
+            <option value="fr">Français</option>
+        </select>
+    </div>
+</header>
+
+<section class="hero">
+    <h1 id="hero-title">Welcome to InfoSphere</h1>
+    <p id="hero-desc">The Future of AI & Computer Science at Ibn Khaldoun High School.</p>
+    <a href="#explore" class="btn" data-key="cta">Start Learning</a>
+</section>
+
+<div class="container" id="explore">
+    <div class="grid">
+        <div class="card">
+            <h3 data-key="card1-t">Artificial Intelligence</h3>
+            <p data-key="card1-d">Explore the foundations of Machine Learning and Neural Networks in our 2025 curriculum.</p>
+        </div>
+
+        <div class="card">
+            <h3 data-key="card3-t">Teacher's Portal</h3>
+            <p data-key="card3-d">Connect with experts and access exclusive academic resources.</p>
+        </div>
+    </div>
+</div>
+
+<!-- Library Modal with AI + IoT videos + descriptions -->
+<div id="libraryModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeLibrary()">&times;</span>
+        <h2 data-key="libraryTitle">AI & IoT Video Library</h2>
+        <div class="grid">
+
+            <!-- AI Video 1 -->
+            <div class="card">
+                <h3>AI Basics for Beginners</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/VGFpV3Qj4as" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p data-key="ai1-desc">Learn the fundamentals of artificial intelligence in a simple and clear way.</p>
+            </div>
+
+            <!-- AI Video 2 -->
+            <div class="card">
+                <h3>AI Full Course Tutorial</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/JMUxmLyrhSk" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p data-key="ai2-desc">Comprehensive AI course covering machine learning and neural networks.</p>
+            </div>
+
+            <!-- AI Video 3 -->
+            <div class="card">
+                <h3>Google AI Course for Beginners</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Yq0QkCxoTHM" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p data-key="ai3-desc">Short introduction to AI concepts from Google’s AI course.</p>
+            </div>
+
+            <!-- IoT Video 1 -->
+            <div class="card">
+                <h3>IoT Tutorial for Beginners</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/hdZzNOQV5vU" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p data-key="iot1-desc">Learn the basics of Internet of Things and its applications.</p>
+            </div>
+
+            <!-- IoT Video 2 -->
+            <div class="card">
+                <h3>Internet of Things Explained</h3>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/oeZE6jK2Q4U" frameborder="0" allowfullscreen></iframe>
+                </div>
+                <p data-key="iot2-desc">Understand IoT concepts and real-world IoT projects.</p>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- AI News Modal -->
+<div id="newsModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closeNews()">&times;</span>
+        <h2 data-key="newsTitle">AI News</h2>
+        <div class="grid">
+            <div class="card">
+                <h3>AI Breakthroughs 2025</h3>
+                <p data-key="news1">Latest updates on artificial intelligence research worldwide.</p>
+            </div>
+            <div class="card">
+                <h3>AI in Education</h3>
+                <p data-key="news2">How AI is transforming learning and teaching methods.</p>
+            </div>
+            <div class="card">
+                <h3>Student AI Projects</h3>
+                <p data-key="news3">Showcasing innovative student projects using AI technologies.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <p>&copy; 2025 InfoSphere Ibn Khaldoun - All Rights Reserved</p>
+</footer>
+
+<script>
+const translations = {
+    en: {
+        library: "Library", news: "AI News",
+        heroT: "Welcome to InfoSphere",
+        heroD: "The Future of AI & Computer Science at Ibn Khaldoun High School.",
+        cta: "Start Learning",
+        card1t: "Artificial Intelligence",
+        card1d: "Explore the foundations of Machine Learning and Neural Networks.",
+        libraryTitle: "AI & IoT Video Library",
+        newsTitle: "AI News",
+        news1: "Latest updates on artificial intelligence research worldwide.",
+        news2: "How AI is transforming learning and teaching methods.",
+        news3: "Showcasing innovative student projects using AI technologies.",
+        "ai1-desc": "Learn the fundamentals of artificial intelligence in a simple and clear way.",
+        "ai2-desc": "Comprehensive AI course covering machine learning and neural networks.",
+        "ai3-desc": "Short introduction to AI concepts from Google’s AI course.",
+        "iot1-desc": "Learn the basics of Internet of Things and its applications.",
+        "iot2-desc": "Understand IoT concepts and real-world IoT projects."
+    },
+    ar: {
+        library: "", news: "  ",
+        heroT: "   ",
+        heroD: "        .",
+        card1t: " ",
+        card1d: "        2025.",
+        libraryTitle: "    IoT",
+        newsTitle: "  ",
+        news1: "        .",
+        news2: "      .",
+        news3: "       .",
+        "ai1-desc": "      .",
+        "ai2-desc": "      .",
+        "ai3-desc": "        Google.",
+        "iot1-desc": "    .",
+        "iot2-desc": "     ."
+    },
+    fr: {
+        library: "Bibliothèque", news: "Actualités IA",
+        heroT: "Bienvenue à InfoSphere",
+        heroD: "L'avenir de l'IA et de l'informatique au Lycée Ibn Khaldoun.",
+        card1t: "Intelligence Artificielle",
+        card1d: "Explorez les bases de l'apprentissage automatique et des réseaux neuronaux.",
+        libraryTitle: "Bibliothèque Vidéos IA & IoT",
+        newsTitle: "Actualités IA",
+        news1: "Dernières mises à jour sur la recherche en intelligence artificielle dans le monde.",
+        news2: "Comment l'IA transforme l'apprentissage et l'enseignement.",
+        news3: "Présentation des projets étudiants innovants utilisant les technologies IA.",
+        "ai1-desc": "Apprenez les bases de l'intelligence artificielle de manière simple et claire.",
+        "ai2-desc": "Cours complet sur l'IA couvrant apprentissage automatique et réseaux neuronaux.",
+        "ai3-desc": "Introduction rapide aux concepts de l'IA avec le cours Google.",
+        "iot1-desc": "Apprenez les bases de l’Internet des objets et ses applications.",
+        "iot2-desc": "Comprendre les concepts de l’IoT et les projets réels."
+    }
+};
+
+function changeLanguage(lang) {
+    document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
+    
+    document.getElementById('hero-title').innerText = translations[lang].heroT;
+    document.getElementById('hero-desc').innerText = translations[lang].heroD;
+    
+    document.querySelectorAll('[data-key]').forEach(el => {
+        const key = el.getAttribute('data-key');
+        if(translations[lang][key]) el.innerText = translations[lang][key];
+    });
+}
+
+function openLibrary() { document.getElementById('libraryModal').style.display = 'block'; }
+function closeLibrary() { document.getElementById('libraryModal').style.display = 'none'; }
+function openNews() { document.getElementById('newsModal').style.display = 'block'; }
+function closeNews() { document.getElementById('newsModal').style.display = 'none'; }
+
+window.onclick = function(event) {
+    const library = document.getElementById('libraryModal');
+    const news = document.getElementById('newsModal');
+    if(event.target === library) library.style.display = "none";
+    if(event.target === news) news.style.display = "none";
+}
+</script>
+</body>
+</html>
